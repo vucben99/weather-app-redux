@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+// CSS
+import "./App.css"
+
+// React Router
+import { Routes, Route } from 'react-router-dom'
+
+// Pages
+import MainPage from "./pages/MainPage"
+import AddCity from "./pages/AddCity"
+import Weather from "./pages/Weather"
+import NotFound from "./pages/NotFound"
+
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/add_city" element={<AddCity />} />
+        <Route path="/weather/:capital" element={<Weather />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
