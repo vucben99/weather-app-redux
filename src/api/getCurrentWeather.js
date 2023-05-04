@@ -1,5 +1,6 @@
 import axios from "axios"
-import { API_KEY } from "./secrets"
+// import { API_KEY } from "./secrets"
+const API_KEY = process.env.REACT_APP_API_KEY
 
 async function getCurrentWeather(capital) {
   try {

@@ -1,5 +1,4 @@
-import { useSelector } from "react-redux"
-import Highlighter from "react-highlight-words"
+import { useSelector } from 'react-redux'
 
 function Dropdown({ search, setSearch, selectedCapital, setSelectedCapital }) {
   const capitals = useSelector((state) => state.cities.value)
@@ -16,19 +15,36 @@ function Dropdown({ search, setSearch, selectedCapital, setSelectedCapital }) {
     setSearch(capital.capital)
   }
 
+  function highlightText(capital, search) {
+    const indexOfCapital = capital.indexOf(search)
+    const firstPart = capital.slice(0, indexOfCapital === -1 ? 0 : indexOfCapital)
+    const middlePart = search
+    const lastPart = capital.slice(firstPart.length + middlePart.length, capital.length)
+    return [firstPart, middlePart, lastPart]
+  }
+
   return (
     <ul className='dropdown'>
       {search.length > 0 &&
-        filteredCapitals.map((capital) => (
-          <li className='dropdown_item' onClick={() => handleSelect(capital)} key={capital.country}>
-            <Highlighter
-              highlightClassName='highlighter'
-              searchWords={search.split()}
-              textToHighlight={capital.capital}
-            />
-          </li>
-        ))}
+        filteredCapitals.map((capital) => {
+          return (
+            <li
+              className='dropdown_item'
+              onClick={() => handleSelect(capital)}
+              key={capital.country}
+            >
+              {highlightText(capital.capital, search).map((part, index) => {
+                return index === 1 ? (
+                  <span style={{ color: 'lightblue' }}>{part}</span>
+                ) : (
+                  <span>{part}</span>
+                )
+              })}
+            </li>
+          )
+        })}
     </ul>
   )
 }
+
 export default Dropdown
