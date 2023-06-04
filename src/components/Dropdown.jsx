@@ -36,9 +36,11 @@ function Dropdown({ search, setSearch, setSelectedCapital }) {
             >
               {highlightText(capital.capital, search).map((part, index) => {
                 return index === 1 ? (
-                  <span style={{ color: 'lightblue' }}>{part}</span>
+                  <span style={{ color: 'lightblue' }} key={index}>
+                    {part}
+                  </span>
                 ) : (
-                  <span>{part}</span>
+                  <span key={index}>{part}</span>
                 )
               })}
             </li>
