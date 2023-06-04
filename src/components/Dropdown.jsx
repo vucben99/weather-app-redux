@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useSelector } from 'react-redux'
 
-function Dropdown({ search, setSearch, selectedCapital, setSelectedCapital }) {
+function Dropdown({ search, setSearch, setSelectedCapital }) {
   const capitals = useSelector((state) => state.cities.value)
 
   const filteredCapitals = capitals

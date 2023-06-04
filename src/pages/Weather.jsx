@@ -50,7 +50,11 @@ function Weather() {
           <div className='icon-and-data'>
             <SunriseIcon className='suntime_icon' />
             <p className='weather-data'>
-              {weather ? <Timestamp time={weather.sys.sunrise} timezone={weather.timezone} /> : '--'}
+              {weather ? (
+                <Timestamp time={weather.sys.sunrise} timezone={weather.timezone} />
+              ) : (
+                '--'
+              )}
             </p>
           </div>
           <div className='icon-and-data'>
